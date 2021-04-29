@@ -58,7 +58,7 @@ def main():
             break
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    rel_path = "../MeetingCam/filler/"
+    rel_path = "./filler/"
     dir_path = os.path.normpath(os.path.join(script_dir, rel_path))
 
     photoLayout = [[sg.Text('Take a New Photo', size=(40, 1), justification='center', font='Helvetica 20')],[sg.Image(filename='', key='image')], [sg.Button("Take Photo")],]
@@ -82,7 +82,7 @@ def main():
     videoWindow = sg.Window('Virtual Camera Hub', videoLayout)
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    rel_path = "../MeetingCam/filler/Video.avi"
+    rel_path = "./filler/Video.avi"
     dir_path = os.path.normpath(os.path.join(script_dir, rel_path))
 
     if event == "Make a New Video":
@@ -113,7 +113,8 @@ def main():
     window = sg.Window('Virtual Camera Hub', layout)
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    rel_path = "../MeetingCam/filler/{}{}".format(fileName, fileType)
+    rel_path = "./filler/{}{}".format(fileName, fileType)
+    
     if event == "Take a New Photo":
         rel_path = "../filler/{}{}".format(fileName, fileType)
     file_path = os.path.normpath(os.path.join(script_dir, rel_path))
@@ -124,7 +125,7 @@ def main():
         frameFinal = cv2.cvtColor(frameFinal, cv2.COLOR_RGBA2RGB)
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    rel_path = "../MeetingCam/filler/{}{}".format(fileName, fileType)
+    rel_path = "./filler/{}{}".format(fileName, fileType)
     file_path = os.path.normpath(os.path.join(script_dir, rel_path))
 
     if fileType == '.avi':
@@ -182,18 +183,5 @@ def main():
 
                 cam.sleep_until_next_frame()
 
-'''
-try:
-    main()
-except:
-    layout = [[sg.Text("Error")], [sg.Button("Exit")]]
-    window = sg.Window("Virtual Camera Hub", layout)
 
-
-    while True:
-        event, values = window.Read(timeout=20, timeout_key='timeout')
-        if event == "Exit" or event == sg.WIN_CLOSED:
-            window.close()
-            break
-'''
 main()
